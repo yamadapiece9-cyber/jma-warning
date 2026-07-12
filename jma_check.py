@@ -179,8 +179,9 @@ def split(text, limit=1900):
 def post_discord(text):
     for chunk in split(text):
         data = json.dumps({"content": chunk}).encode("utf-8")
-        req = urllib.request.Request(WEBHOOK, data=data,
-                                     headers={"Content-Type": "application/json"})
+        # DiscordはUser-Agentの無いリクエストを403で弾くため必ず付ける
+        headers = {"Content-Type": "application/json", **UA}
+        req = urllib.request.Request(WEBHOOK, data=data, headers=headers)
         urllib.request.urlopen(req, timeout=20)
 
 
