@@ -2,7 +2,7 @@ name: JMA Warning Check
 
 on:
   schedule:
-    - cron: '*/10 * * * *'     # 10分ごと（GitHubの都合で数分遅れることあり）
+    - cron: '3,13,23,33,43,53 * * * *'   # 毎時 :03 :13 :23 :33 :43 :53（0分の混雑スロットを回避）
   workflow_dispatch:            # 手動実行ボタンも有効化
 
 permissions:
